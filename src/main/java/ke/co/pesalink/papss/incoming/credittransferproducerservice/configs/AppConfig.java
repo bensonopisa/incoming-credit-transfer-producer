@@ -44,8 +44,11 @@ public class AppConfig {
     @Value("${papss.messages.polling.interval.duration.seconds}")
     private Duration pollerInterval;
 
-    @Value("${papss.messages.polling.endpoint}")
-    private String fetchMessageUrl;
+    @Value("${papss.messages.polling.baseurl}")
+    private String baseUrl;
+
+    @Value("${papss.messages.polling.path}")
+    private String messagePath;
 
     @DurationUnit(ChronoUnit.SECONDS)
     @Value("${papss.messages.polling.connect.timeout.seconds}")
