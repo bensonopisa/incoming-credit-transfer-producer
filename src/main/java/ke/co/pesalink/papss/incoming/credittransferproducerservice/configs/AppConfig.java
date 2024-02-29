@@ -34,17 +34,39 @@ public class AppConfig {
     @Value("${spring.rabbitmq.template.exchange}")
     private String adapterExchange;
 
-    @DurationUnit(ChronoUnit.SECONDS)
-    @Value("${adapter.poller.interval.seconds}")
-    private Duration pollerInterval;
-
-    @Value("${papss.messages.endpoint}")
-    private String fetchMessageUrl;
-
     @Value("${adapter.inbout.queue.persistence}")
     private String peristenceQueue;
 
     @Value("${adapter.inbound.routingKey.persistence}")
     private String persistenceRoutingKey;
+
+    @DurationUnit(ChronoUnit.SECONDS)
+    @Value("${papss.messages.polling.interval.duration.seconds}")
+    private Duration pollerInterval;
+
+    @Value("${papss.messages.polling.endpoint}")
+    private String fetchMessageUrl;
+
+    @DurationUnit(ChronoUnit.SECONDS)
+    @Value("${papss.messages.polling.connect.timeout.seconds}")
+    private Duration papssConnectTimeout;
+
+    @DurationUnit(ChronoUnit.SECONDS)
+    @Value("${papss.messages.polling.read.timeout.seconds}")
+    private Duration papssReadTimeout;
+
+    @Value("${papss.transport.ssl.keystore.password}")
+    private String papssKeyStorePassword;
+
+    @Value("${papss.messages.version.header.value}")
+    private Integer rtpVersionHeaderValue;
+
+    @Value("${papss.messages.channel.header.value}")
+    private String rtpChannelHeaderValue;
+
+    @Value("${papss.messages.channel.header.key}")
+    private String rtpChannelHeaderKey;
+    @Value("${papss.messages.version.header.key}")
+    private String rtpVersionHeaderKey;
 }
 
