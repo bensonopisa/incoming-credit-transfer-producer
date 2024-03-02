@@ -19,6 +19,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.SSLContext;
@@ -73,7 +75,10 @@ public class RestTemplateConfig {
                 .build();
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         RestTemplate restTemplate =  new RestTemplate(factory);
+
+        restTemplate.setMessageConverters(List.of(new StringHttpMessageConverter(), new MappingJackson2HttpMessageConverter()));
         restTemplate.setInterceptors(List.of(new RequestLoggingInterceptor()));
+
         return restTemplate;
     }
 }
